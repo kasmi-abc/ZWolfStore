@@ -1,0 +1,190 @@
+@import "tailwindcss";
+
+@theme {
+  /* ZWOLF Nutrition identity (from LOGO.jpg) */
+  --color-primary: #121212;
+  --color-primary-deep: #1a1a1a;
+  --color-accent-red: #e50914;
+  --color-accent-red-dark: #b00610;
+  --color-accent-white: #ffffff;
+  --color-bg-soft: #f4f4f6;
+  --color-success: #10b981;
+  /* legacy aliases (kept for compatibility) */
+  --color-petrol: #1a1a1a;
+  --color-petrol-dark: #1a1a1a;
+  --color-petrol-deep: #121212;
+  --color-brand: #121212;
+  --color-ink: #111111;
+  --color-ink-2: #0e1111;
+  --color-accent: #e50914;
+  --color-accent-dark: #b00610;
+  --color-mist: #f4f4f6;
+  --color-search: #f3f4f6;
+  --color-muted: #666666;
+  --color-save-bg: #d1fae5;
+  --color-save-text: #10B981;
+  --color-appblue: #1a1a1a;
+  --color-appblue-deep: #121212;
+  --font-sans: "Inter", "Roboto", "Open Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #121212;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #ffffff;
+  color: #121212;
+  font-family: var(--font-cairo), "Inter", system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* type */
+.hero-title {
+  font-family: var(--font-almarai);
+  font-size: 40px;
+  line-height: 1.15;
+  font-weight: 800;
+}
+@media (max-width: 1024px) {
+  .hero-title { font-size: 36px; }
+}
+@media (max-width: 640px) {
+  .hero-title { font-size: 32px; }
+}
+.section-title {
+  font-family: var(--font-cairo);
+  font-size: 26px;
+  font-weight: 700;
+}
+.product-title {
+  font-family: var(--font-tajawal);
+  font-size: 16px;
+  font-weight: 700;
+}
+.price {
+  font-family: var(--font-almarai);
+  font-size: 19px;
+  font-weight: 800;
+}
+.body-text {
+  font-size: 14px;
+  font-weight: 400;
+}
+.badge-text {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* blocks */
+.block-cream { background: #ffffff; }
+.block-white { background: #ffffff; }
+.block-dark { background: #121212; color: white; }
+
+/* utils */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* marquee */
+.brands-viewport {
+  overflow: hidden;
+  width: 100%;
+}
+.brands-track {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+  animation: scroll 18s linear infinite;
+  will-change: transform;
+}
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(50%); }
+}
+[dir="rtl"] .brands-track {
+  animation-name: scroll-rtl;
+}
+@keyframes scroll-rtl {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(50%); }
+}
+.brands-track:hover {
+  animation-play-state: paused;
+}
+.brand-item {
+  filter: grayscale(1);
+  opacity: 0.6;
+  transition: all 0.3s;
+}
+.brand-item:hover {
+  filter: grayscale(0);
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: #121212; border-radius: 999px; }
+::-webkit-scrollbar-track { background: #F4F4F6; }
+
+/* focus ring */
+:focus-visible {
+  outline: 2px solid #E50914;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* mobile forms */
+@media (max-width: 640px) {
+  input, select, textarea {
+    font-size: 16px;
+  }
+  button, a {
+    min-height: 24px;
+  }
+  /* admin touch */
+  .admin-area button,
+  .admin-area select {
+    min-height: 44px;
+  }
+  .admin-area input[type="checkbox"] {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+/* print */
+@media print {
+  header, footer, nav { display: none !important; }
+  body { background: white !important; }
+  main { padding: 0 !important; }
+  .print\:hidden { display: none !important; }
+  .print\:shadow-none { box-shadow: none !important; }
+  #print-receipt { border: 2px solid black !important; box-shadow: none !important; }
+}
